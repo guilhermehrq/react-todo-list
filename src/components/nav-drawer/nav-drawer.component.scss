@@ -1,0 +1,63 @@
+@import '../../variables.scss';
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, .32);
+    display: block;
+    transition: all 280ms ease;
+    opacity: 0;
+
+    &.open {
+        animation-name: showOverlay;
+        animation-delay: 1ms;
+        animation-duration: 280ms;
+        animation-fill-mode: forwards;
+    }
+}
+
+.nav-drawer-wrap {
+    height: 100%;
+    width: 320px;
+    background-color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: translateX(-110%);
+    box-shadow: unquote(map-get($shadows, '16dp'));
+    transition: all 280ms ease;
+
+    &.open {
+        transform: translateX(0);
+    }
+
+    .header {
+        height: 60px;
+        width: 100%;
+        padding: 16px;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+        display: flex;
+
+        .leading-container {
+            padding-right: 32px;
+            user-select: none;
+    
+            &>div {
+                cursor: pointer;            
+            }
+        }
+
+        .title {
+            font-size: 20px;
+        }
+    }
+}
+
+@keyframes showOverlay {
+    from { opacity: 0; }
+    to { opacity: 1;}
+}
