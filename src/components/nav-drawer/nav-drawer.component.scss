@@ -55,6 +55,33 @@
             font-size: 20px;
         }
     }
+
+    .menu-itens {
+        .item {
+            display: flex;
+            height: 48px;
+            padding: 0 16px;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(0,0,0,.64);
+            margin-top: 8px;
+            transition: background-color 280ms ease;
+
+            &:hover {
+                background-color: #E8EAF6;
+            }
+
+            &.actived {
+                color: $primary;
+            }
+
+            i {
+                margin-right: 16px;
+            }
+        }
+    }
 }
 
 @keyframes showOverlay {

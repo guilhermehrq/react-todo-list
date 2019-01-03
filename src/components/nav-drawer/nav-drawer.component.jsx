@@ -7,6 +7,20 @@ export default class NavDrawerComponent extends Component {
         super(props);
     }
 
+    generateMenuItens() {
+        console.log(this.props.menuList);
+        const menuItens = this.props.menuList.map((item, index) => {
+            return (
+                <a href={ item.url } className={ `item ${ item.actived ? 'actived' : ''}` } key={ index }>
+                    <i className='material-icons'>{ item.icon }</i>
+                    { item.name }
+                </a>
+            )
+        });
+
+        return menuItens;
+    }
+
     render() {
         return (
             <div>
@@ -24,6 +38,9 @@ export default class NavDrawerComponent extends Component {
                         <div className='title'>
                             {this.props.title}
                         </div>
+                    </div>
+                    <div className='menu-itens'>
+                        { this.generateMenuItens() }
                     </div>
                 </div>
             </div>

@@ -7,7 +7,11 @@ export default class Main extends Component {
         super(props);
 
         this.state = {
-            menuOpen: this.props.open
+            menuOpen: this.props.open,
+            menuList: [
+                { name: 'Home', icon: 'home', url: '#', actived: true },
+                { name: 'Todo List', icon: 'list', url: '#' },
+            ]
         }
         this.handleClickMenu = this.handleClickMenu.bind(this);
     }
@@ -21,7 +25,7 @@ export default class Main extends Component {
         return (
             <div>
                 <ToolbarComponent title='TODO' handleMenuClick={ this.handleClickMenu }/>
-                <NavDrawerComponent open={ this.state.menuOpen } handleMenuClick={ this.handleClickMenu } title='TODO' />
+                <NavDrawerComponent menuList={ this.state.menuList } open={ this.state.menuOpen } handleMenuClick={ this.handleClickMenu } title='TODO' />
             </div>
         )
     }
