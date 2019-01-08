@@ -6,8 +6,8 @@ import Sobre from './sobre/sobre';
 const Routes = props => (
     <BrowserRouter>
         <Switch>
-            <Route path="/sobre" component={ Sobre } />
-            <Route exact path={ props.match.path }  component={ Todo } />
+            <Route exact={ true } path='/'  component={ Todo } />
+            <Route path='/sobre' component={ Sobre } />
         </Switch>
     </BrowserRouter>
 );

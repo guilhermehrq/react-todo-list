@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ToolbarComponent from '../components/toolbar/toolbar.component';
 import NavDrawerComponent from '../components/nav-drawer/nav-drawer.component';
-import MainRouter from '../main.routes';
+import Routes from './routes';
 
 export default class Main extends Component {
     constructor(props) {
@@ -47,7 +47,7 @@ export default class Main extends Component {
                     handleMenuClick={ this.handleClickMenu }
                     handleChangePage={ this.handleChangePage } 
                     title='TODO' />
-                <MainRouter />
+                <Routes />
             </div>
         )
     }
