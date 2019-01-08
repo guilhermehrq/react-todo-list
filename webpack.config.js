@@ -13,7 +13,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        port: 3000,
+        port: 50000,
         contentBase: './dist',
         disableHostCheck: true
     },

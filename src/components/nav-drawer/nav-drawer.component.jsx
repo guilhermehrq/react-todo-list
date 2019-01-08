@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './nav-drawer.component.scss';
 import If from '../../utils/if/if.directive';
+import { NavLink } from 'react-router-dom';
 
 export default class NavDrawerComponent extends Component {
     constructor(props) {
@@ -11,11 +12,11 @@ export default class NavDrawerComponent extends Component {
         console.log(this.props.menuList);
         const menuItens = this.props.menuList.map((item, index) => {
             return (
-                <a href={ item.url } className={ `item ${ item.actived ? 'actived' : ''}` } key={ index }>
+                <NavLink to={ item.url } className='item' activeClassName='actived' key={ index }>
                     <i className='material-icons'>{ item.icon }</i>
                     { item.name }
-                </a>
-            )
+                </NavLink>
+            );
         });
 
         return menuItens;

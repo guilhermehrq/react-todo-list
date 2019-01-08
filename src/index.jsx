@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './views/main';
+import MainRouter from './main.routes';
 import './index.scss';
 
-ReactDOM.render(<Main />, document.getElementById('index'));
+
+
+ReactDOM.render(<MainRouter />, document.getElementById('index'));
