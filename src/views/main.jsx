@@ -10,12 +10,18 @@ export default class Main extends Component {
         this.state = {
             menuOpen: this.props.open,
             menuList: [
-                { name: 'Todo List', icon: 'list', url: '/' },
+                { name: 'Todo List', icon: 'list', url: '/', activated: true },
                 { name: 'Sobre', icon: 'info', url: '/sobre' }
             ]
         }
+
         this.handleClickMenu = this.handleClickMenu.bind(this);
         this.handleChangePage = this.handleChangePage.bind(this);
+        this.verifyActualPage = this.verifyActualPage.bind(this);
+    }
+
+    componentWillMount() {
+        this.verifyActualPage();
     }
 
     handleClickMenu() {
@@ -23,13 +29,23 @@ export default class Main extends Component {
         this.setState({ ...this.state, menuOpen: !oldMenuOpen });
     }
 
+    verifyActualPage() {
+        const actualLocation = window.location.pathname;
+
+        this.state.menuList.forEach((item, i) => {
+            if(item.url === actualLocation) {
+                this.handleChangePage(i);
+            }
+        })
+    }
+
     handleChangePage(index) {
         const newMenu = this.state.menuList;
         newMenu.forEach((item, i) => {
             if(i !== index) {
-                item.actived = false;
+                item.activated = false;
             } else {
-                item.actived = true;
+                item.activated = true;
             }
         });
         this.setState({ ...this.state, menuList: newMenu });
@@ -45,8 +61,8 @@ export default class Main extends Component {
                     menuList={ this.state.menuList } 
                     open={ this.state.menuOpen } 
                     handleMenuClick={ this.handleClickMenu }
-                    handleChangePage={ this.handleChangePage } 
-                    title='TODO' />
+                    title='TODO'
+                    handleChangePage={ this.handleChangePage } />
                 <Routes />
             </div>
         )

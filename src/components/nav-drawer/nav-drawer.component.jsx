@@ -4,15 +4,10 @@ import If from '../../utils/if/if.directive';
 import { NavLink } from 'react-router-dom';
 
 export default class NavDrawerComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     generateMenuItens() {
-        console.log(this.props.menuList);
         const menuItens = this.props.menuList.map((item, index) => {
             return (
-                <NavLink to={ item.url } className='item' activeClassName='actived' key={ index }>
+                <NavLink to={ item.url } className={`item${item.activated ? ' activated' : ''}`} key={ index } onClick={ () => this.props.handleChangePage(index) }>
                     <i className='material-icons'>{ item.icon }</i>
                     { item.name }
                 </NavLink>

@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './toolbar.component.scss';
 
 export default class ToolbarComponent extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className='toolbar-wrap' ref={ this.toolbarElement }>
