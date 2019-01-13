@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import AnimateHeight from 'react-animate-height';
+import IconTextButton from '../../components/button/button.component';
 
 import './todo.scss';
 
@@ -8,29 +10,30 @@ export default class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: ['Hello', 'World']
+            items: ['Hello', 'World'],
+            apper: false,
+            height: 0
         }
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleRemove = this.handleRemove.bind(this);
+        this.openFilter = this.openFilter.bind(this);
     }
 
-    handleAdd() {
-        const newItem = [...this.state.items, 'batata'];
-        this.setState({ ...this.state, items: newItem });
-    }
-
-    handleRemove(i) {
-        const newList = this.state.items.slice();
-        newList.splice(i);
-        this.setState({ ...this.state, items: newList })
+    openFilter() {
+        const state = this.state;
+        this.setState({ ...state, apper: !state.apper, height: state.height === 0 ? 'auto' : 0 });
     }
 
     render() {
-        const items = this.state.items.map((item, i) => (
-            <div key={ i } onClick={ () => this.handleRemove(i)}>
-                { item }
-            </div>
-        ));
+        const batata = () => {
+            if (this.state.apper) {
+                return (
+                    <div className='ui-card-content'>
+                        aajnasgfhasf <br/>
+                        ajbdghaffa  <br/>
+                        akjfhasgf
+                    </div>
+                )
+            }
+        }
 
         return (
             <div className='ui-s600' style={{ marginTop: '32px' }}>
@@ -38,19 +41,18 @@ export default class Todo extends Component {
                     <div className='ui-card-title title-container'>
                         <span>Lista de tarefas</span>
 
-                        <div onClick={ () => this.handleAdd() }>
-                            <i className='material-icons'>filter_list</i>
-                        </div>
+                        <IconTextButton icon='filter_list' onClick={ () => this.openFilter() }/>
                     </div>
-                    
-                    <div className='ui-card-content filter-container'>
-                        <ReactCSSTransitionGroup
-                            transitionName='example'
-                            transitionEnterTimeout={ 500 }
-                            transitionLeaveTimeout={ 300 }>
-                            { items }
-                        </ReactCSSTransitionGroup>
-                    </div>
+                        <AnimateHeight 
+                            duration={ 280 }
+                            height={ this.state.height }>
+                            <ReactCSSTransitionGroup
+                                transitionName='example'
+                                transitionEnterTimeout={ 280 }
+                                transitionLeaveTimeout={ 280 }>
+                                { batata() }
+                            </ReactCSSTransitionGroup>
+                        </AnimateHeight>
                 </Card>
             </div>
         )
