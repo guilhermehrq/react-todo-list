@@ -1,26 +1,49 @@
 import React from 'react';
 import If from '../utils/if';
 import './button.component.scss';
+import './fab.component.scss';
 
-const IconTextButton = props => {
-    if(!props.label && !props.icon) {
+
+function verifyButtonType(props) {
+    if (props.label && !props.icon) {
+        return ' text-button';
+    } else if (!props.label && props.icon) {
+        return ' icon-button';
+    } else {
+        return ' text-icon-button';
+    }
+}
+
+const Button = props => {
+    if (!props.label && !props.icon) {
         console.error('Deve ser informada ao menos a propriedade label ou icon do botão');
         return null;
     }
 
     return (
         <If test={!props.hide}>
-            <button className={`md-button`} onClick={props.onClick}>
+            <button
+                className={`md-button${verifyButtonType(props)}`}
+                style={{ backgroundColor: props.backgroundColor || '#fff', color: props.color || '#000' }}
+                onClick={props.onClick}>
                 <If test={props.icon}>
                     <i className='material-icons'>{props.icon}</i>
                 </If>
                 <If test={props.label}>
-                    <label style={{ paddingLeft: !props.icon ? '16px' : '0' }}>{props.label}</label>
+                    <label>{props.label}</label>
                 </If>
             </button>
         </If>
     )
 }
 
-export default IconTextButton;
+const FAB = props => {
+    return (
+        <button className={`fab ${props.type || 'normal'} ${props.className}`} onClick={props.onClick}>
+            <i className='material-icons'>{ props.icon }</i>
+        </button>
+    )
+}
+
+export { Button, FAB };
 

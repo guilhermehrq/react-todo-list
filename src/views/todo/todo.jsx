@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
-import IconTextButton from '../../components/button/button.component';
+import { Button, FAB } from '../../components/button/button.component';
 
 import './todo.scss';
 
@@ -41,7 +41,8 @@ export default class Todo extends Component {
                     <div className='ui-card-title title-container'>
                         <span>Lista de tarefas</span>
 
-                        <IconTextButton icon='filter_list' onClick={ () => this.openFilter() }/>
+                    <FAB type='mini' icon='filter_list' className='not-raised' onClick={ () => this.openFilter() } />
+
                     </div>
                         <AnimateHeight 
                             duration={ 280 }
