@@ -9,14 +9,7 @@
     background-color: rgba(0,0,0, .32);
     display: block;
     transition: all 280ms ease;
-    opacity: 0;
-
-    &.open {
-        animation-name: showOverlay;
-        animation-delay: 1ms;
-        animation-duration: 280ms;
-        animation-fill-mode: forwards;
-    }
+    z-index: 1;
 }
 
 .nav-drawer-wrap {
@@ -84,7 +77,20 @@
     }
 }
 
-@keyframes showOverlay {
-    from { opacity: 0; }
-    to { opacity: 1;}
+.overlay-enter {
+    opacity: 0.01;
+
+    &.overlay-enter-active {
+        opacity: 1;
+        transition: opacity 280ms ease;
+    }
+}
+
+.overlay-leave {
+    opacity: 1;
+    transition: opacity 280ms ease;
+
+    &.overlay-leave-active {
+        opacity: 0;
+    }
 }

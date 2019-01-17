@@ -39,7 +39,10 @@ const Button = props => {
 
 const FAB = props => {
     return (
-        <button className={`fab ${props.type || 'normal'} ${props.className}`} onClick={props.onClick}>
+        <button 
+            className={`fab ${props.type || 'normal'} ${props.className || ''}`} 
+            onClick={props.onClick}
+            style={{ backgroundColor: props.backgroundColor || '#fff', color: props.color || '#000' }}>
             <i className='material-icons'>{ props.icon }</i>
         </button>
     )

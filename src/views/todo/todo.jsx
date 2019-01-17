@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
-import { Button, FAB } from '../../components/button/button.component';
+import { FAB } from '../../components/button/button.component';
 
 import './todo.scss';
 
@@ -10,8 +10,7 @@ export default class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: ['Hello', 'World'],
-            apper: false,
+            openFilter: false,
             height: 0
         }
         this.openFilter = this.openFilter.bind(this);
@@ -19,43 +18,62 @@ export default class Todo extends Component {
 
     openFilter() {
         const state = this.state;
-        this.setState({ ...state, apper: !state.apper, height: state.height === 0 ? 'auto' : 0 });
+        this.setState({ ...state, openFilter: !state.openFilter, height: state.height === 0 ? 'auto' : 0 });
     }
 
     render() {
-        const batata = () => {
-            if (this.state.apper) {
+        const renderFilter = () => {
+            if (this.state.openFilter) {
                 return (
                     <div className='ui-card-content'>
-                        aajnasgfhasf <br/>
-                        ajbdghaffa  <br/>
-                        akjfhasgf
+                        Filtros aqui
                     </div>
-                )
+                );
             }
         }
 
         return (
             <div className='ui-s600' style={{ marginTop: '32px' }}>
-                <Card className='tools-card'>
+                <Card>
                     <div className='ui-card-title title-container'>
                         <span>Lista de tarefas</span>
-
-                    <FAB type='mini' icon='filter_list' className='not-raised' onClick={ () => this.openFilter() } />
-
+                        <FAB type='mini' icon='filter_list' className='not-raised' onClick={ () => this.openFilter() } />
                     </div>
                         <AnimateHeight 
-                            duration={ 280 }
+                            duration={ 300 }
                             height={ this.state.height }>
                             <ReactCSSTransitionGroup
-                                transitionName='example'
+                                transitionName='filter'
                                 transitionEnterTimeout={ 280 }
                                 transitionLeaveTimeout={ 280 }>
-                                { batata() }
+                                { renderFilter() }
                             </ReactCSSTransitionGroup>
                         </AnimateHeight>
                 </Card>
+                <div className='fab-container'>
+                    <FAB icon='add' backgroundColor='#64FFDA'/>
+                </div>
+
+
+                <div className='category-container'>
+                    <Card>
+                        <span className='category-color' style={{backgroundColor: 'red'}}></span>
+                        <div className='ui-card-content'>
+                            <span className='category-name' style={{color: 'red'}}>Giló</span>
+                        </div>
+                    </Card>
+
+                    <Card>
+                        <span className='category-color'></span>
+                        <div className='ui-card-content'>
+                            <span className='category-name'>Batata</span>
+                        </div>
+                    </Card>
+                </div>
+                
             </div>
+
+           
         )
     }
 }
