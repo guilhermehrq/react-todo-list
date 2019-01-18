@@ -7,7 +7,7 @@ export default class NavDrawerComponent extends Component {
     generateMenuItens() {
         const menuItens = this.props.menuList.map((item, index) => {
             return (
-                <NavLink to={ item.url } className={`item${item.activated ? ' activated' : ''}`} key={ index } onClick={ () => this.props.handleChangePage(index) }>
+                <NavLink to={ item.url } className={`item${item.activated ? ' activated' : ''}`} key={ index } onClick={ () => { this.props.handleChangePage(index); this.props.handleMenuClick() } }>
                     <i className='material-icons'>{ item.icon }</i>
                     { item.name }
                 </NavLink>

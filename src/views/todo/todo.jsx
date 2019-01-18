@@ -59,14 +59,48 @@ export default class Todo extends Component {
                     <Card>
                         <span className='category-color' style={{backgroundColor: 'red'}}></span>
                         <div className='ui-card-content'>
-                            <span className='category-name' style={{color: 'red'}}>Giló</span>
+                            <div className='category-container'>
+                                <span className='category-name' style={{color: 'red'}}>Pessoal</span>
+                            </div>
+                            <div className='info-task'>
+                                <p className='title'>Fazer almoço</p>
+                                <p className='description'>Batata frita com sorvete de morango</p>
+                            </div>
+                            <div className='date-container'>
+                                <span className='date' style={{color: 'red'}}>Hoje</span>
+                            </div>
                         </div>
                     </Card>
 
                     <Card>
-                        <span className='category-color'></span>
+                        <span className='category-color' style={{backgroundColor: 'green'}}></span>
                         <div className='ui-card-content'>
-                            <span className='category-name'>Batata</span>
+                            <div className='category-container'>
+                                <span className='category-name' style={{color: 'green'}}>Urgente</span>
+                            </div>
+                            <div className='info-task'>
+                                <p className='title'>Ir ao médico</p>
+                                <p className='description'>Falar sobre as dores de cabeça</p>
+                            </div>
+                            <div className='date-container'>
+                                <span className='date'>Ontem</span>
+                            </div>
+                        </div>
+                    </Card>
+
+                    <Card>
+                        <span className='category-color' style={{backgroundColor: 'black'}}></span>
+                        <div className='ui-card-content'>
+                            <div className='category-container'>
+                                <span className='category-name'>Trabalho</span>
+                            </div>
+                            <div className='info-task'>
+                                <p className='title'>Terminar Faturamento</p>
+                                <p className='description'>Pro ano passado</p>
+                            </div>
+                            <div className='date-container'>
+                                <span className='date'>JAN 15</span>
+                            </div>
                         </div>
                     </Card>
                 </div>
