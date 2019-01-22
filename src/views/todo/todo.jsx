@@ -3,6 +3,7 @@ import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
 import { FAB } from '../../components/button/button.component';
+import timeAgo from '../../utils/time-ago.service';
 
 import './todo.scss';
 
@@ -103,6 +104,8 @@ export default class Todo extends Component {
                             </div>
                         </div>
                     </Card>
+
+                    { timeAgo('23/01/2019') }
                 </div>
                 
             </div>
