@@ -3,7 +3,7 @@ import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
 import { FAB } from '../../components/button/button.component';
-import timeAgo from '../../utils/time-ago.service';
+import timeAgo from '../../utils/time-ago.service'
 
 import './todo.scss';
 
@@ -68,7 +68,7 @@ export default class Todo extends Component {
                                 <p className='description'>Batata frita com sorvete de morango</p>
                             </div>
                             <div className='date-container'>
-                                <span className='date' style={{color: 'red'}}>Hoje</span>
+                                <span className='date' style={{color: 'red'}}>{ timeAgo('2019-01-23', true) }</span>
                             </div>
                         </div>
                     </Card>
@@ -84,7 +84,7 @@ export default class Todo extends Component {
                                 <p className='description'>Falar sobre as dores de cabeça</p>
                             </div>
                             <div className='date-container'>
-                                <span className='date'>Ontem</span>
+                                <span className='date'>{ timeAgo('2019-01-22', true) }</span>
                             </div>
                         </div>
                     </Card>
@@ -100,12 +100,10 @@ export default class Todo extends Component {
                                 <p className='description'>Pro ano passado</p>
                             </div>
                             <div className='date-container'>
-                                <span className='date'>JAN 15</span>
+                                <span className='date'>{ timeAgo('2019-01-15', true) }</span>
                             </div>
                         </div>
                     </Card>
-
-                    { timeAgo('23/01/2019') }
                 </div>
                 
             </div>

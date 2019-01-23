@@ -1,52 +1,56 @@
-const day = 3600000;
-const today = new Date(new Date().setHours(3)).getTime();
+const now = new Date();
+const hour = 3600000;
 
-const times = {
-    future: {
-        0: 'hoje',
-        1: 'amanhã'
-    },
-    past: {
-        0: 'hoje',
-        1: 'ontem'
+const months = [
+    'JAN',
+    'FEV',
+    'MAR',
+    'ABR',
+    'MAI',
+    'JUN',
+    'JUL',
+    'AGO',
+    'SET',
+    'OUT',
+    'NOV',
+    'DEZ'
+]
+
+
+function timeAgo(date, isMinified = false) {
+    if(date === null) {
+        return '';
     }
-}
 
-function timeAgo(date) {
-    if(date instanceof Date) {
-        return calcTime(date);
-    } else {
-        date = date.split('/').reverse().join('-');
-        console.log(date);
-        const formattedDate = new Date(`${date}T03:00`);
-
-        if(!isNaN(formattedDate.getMonth())) {
-            return calcTime(formattedDate);
-        } else {
-            console.error('Data inválida');
-            return false;
+    if(!(date instanceof Date)) {
+        try {
+            date = new Date(`${date}T03:00`);
+        } catch (e) {
+            throw new Error('TimeAgo funciona apenas com datas!');
         }
     }
+
+    return transform(date, isMinified);
 }
 
-function calcTime(date) {
-    const dateInMilleseconds = date.getTime();
-    let diff = Math.round((dateInMilleseconds - today) / day);
-    const direction = diff > 0 ? 'future' : 'past';
-    let timePast;
+function transform(date, isMinified) {
+    let delta = Math.round((now.getTime() - date.getTime()) / hour);
 
-    diff = Math.abs(diff);
+    const forward = delta < 0;
 
-    console.log(diff);
-    if(diff < 24) {
-        timePast = 0;
-    } else if (diff > 24 && diff < 48) {
-        timePast = 1;
-    } else {
-        return date.toLocaleDateString();
-    }
+    delta = Math.abs(delta);
     
-    return times[direction][timePast];
+    if(delta < 24 && !(now.getDate() < date.getDate())) {
+        return 'hoje';
+    } else if (delta < 48 && !(now.getDate() + 1 < date.getDate())) {
+        return forward ? 'amanhã' : 'ontem';
+    } else {
+        if(isMinified) {
+            return `${date.getDate()} ${months[date.getMonth()]}`;
+        } else {
+            return date.toLocaleDateString();
+        }
+    }
 }
 
 export default timeAgo;
