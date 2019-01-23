@@ -1,5 +1,5 @@
 import React from 'react';
-import If from '../../utils/if/if.directive';
+import If from '../utils/if/if.directive';
 import './button.component.scss';
 import './fab.component.scss';
 

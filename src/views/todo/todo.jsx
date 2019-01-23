@@ -3,8 +3,7 @@ import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
 import { FAB } from '../../components/button/button.component';
-import timeAgo from '../../utils/time-ago.service'
-import If from '../../utils/if/if.directive';
+import TaskComponent from './task/task.component';
 
 import './todo.scss';
 
@@ -14,10 +13,12 @@ export default class Todo extends Component {
         this.state = {
             openFilter: false,
             height: 0,
-            openActionsItem: false
+            openActionsItem: false,
+            tasks: this.getTasks(),
+            categories: this.getCategories()
         }
         this.openFilter = this.openFilter.bind(this);
-        this.handleMouseOverItem = this.handleMouseOverItem.bind(this);
+        this.showOverlayActions = this.showOverlayActions.bind(this);
     }
 
     openFilter() {
@@ -25,8 +26,50 @@ export default class Todo extends Component {
         this.setState({ ...state, openFilter: !state.openFilter, height: state.height === 0 ? 'auto' : 0 });
     }
 
-    handleMouseOverItem() {
-        this.setState({ ...this.state, openActionsItem: !this.state.openActionsItem })
+    showOverlayActions(i) {
+        const tasksList = this.state.tasks;
+
+        tasksList[i].openActions = !tasksList[i].openActions;
+
+        this.setState({ ...this.state, tasks: tasksList });
+    }
+
+    getTasks() {
+        return [
+            {
+                id: 1,
+                categoryName: 'Pessoal',
+                categoryColor: 'red',
+                title: 'Fazer almoco',
+                description: 'Batata frita com sorvete de morango',
+                date: '2019-01-23',
+                openActions: false
+            },
+            {
+                id: 2,
+                categoryName: 'Teste',
+                categoryColor: 'black',
+                title: 'Alguma coisa qualquer',
+                description: 'Testando o teste dos testadores',
+                date: '2019-01-24',
+                openActions: false
+            }
+        ]
+    }
+
+    getCategories() {
+        return [
+            {
+                id: 1,
+                name: 'Pessoal',
+                color: 'red'
+            },
+            {
+                id: 2,
+                name: 'Teste',
+                color: 'black'
+            }
+        ]
     }
 
     render() {
@@ -37,18 +80,6 @@ export default class Todo extends Component {
                         Filtros aqui
                     </div>
                 );
-            }
-        }
-
-
-        const renderOverlayActions = () => {
-            if (this.state.openActionsItem) {
-                return (
-                    <div className='overlay-actions'>
-                        <FAB icon='edit' backgroundColor='transparent' color='#fff' className='not-raised' />
-                        <FAB icon='done' backgroundColor='transparent' color='#fff' className='not-raised' />
-                    </div>
-                )
             }
         }
 
@@ -66,7 +97,7 @@ export default class Todo extends Component {
                             transitionName='filter'
                             transitionEnterTimeout={280}
                             transitionLeaveTimeout={280}>
-                            {renderFilter()}
+                            { renderFilter() }
                         </ReactCSSTransitionGroup>
                     </AnimateHeight>
                 </Card>
@@ -74,65 +105,7 @@ export default class Todo extends Component {
                     <FAB icon='add' backgroundColor='#64FFDA' />
                 </div>
 
-
-                <div className='category-container'>
-                    <Card>
-                        <div onMouseEnter={() => this.handleMouseOverItem()} onMouseLeave={() => this.handleMouseOverItem()} style={{width: '100%', display: 'flex'}}>
-                            <span className='category-color' style={{ backgroundColor: 'red' }}></span>
-                            <div className='ui-card-content'>
-                                <div className='category-container'>
-                                    <span className='category-name' style={{ color: 'red' }}>Pessoal</span>
-                                </div>
-                                <div className='info-task'>
-                                    <p className='title'>Fazer almoço</p>
-                                    <p className='description'>Batata frita com sorvete de morango</p>
-                                </div>
-                                <div className='date-container'>
-                                    <span className='date' style={{ color: 'red' }}>{timeAgo('2019-01-23', true)}</span>
-                                </div>
-                            </div>
-                            <ReactCSSTransitionGroup
-                                transitionName='overlay'
-                                transitionEnterTimeout={280}
-                                transitionLeaveTimeout={280}>
-                                { renderOverlayActions() }
-                            </ReactCSSTransitionGroup>
-                        </div>
-                    </Card>
-
-                    <Card>
-                        <span className='category-color' style={{ backgroundColor: 'green' }}></span>
-                        <div className='ui-card-content'>
-                            <div className='category-container'>
-                                <span className='category-name' style={{ color: 'green' }}>Urgente</span>
-                            </div>
-                            <div className='info-task'>
-                                <p className='title'>Ir ao médico</p>
-                                <p className='description'>Falar sobre as dores de cabeça</p>
-                            </div>
-                            <div className='date-container'>
-                                <span className='date'>{timeAgo('2019-01-22', true)}</span>
-                            </div>
-                        </div>
-                    </Card>
-
-                    <Card>
-                        <span className='category-color' style={{ backgroundColor: 'black' }}></span>
-                        <div className='ui-card-content'>
-                            <div className='category-container'>
-                                <span className='category-name'>Trabalho</span>
-                            </div>
-                            <div className='info-task'>
-                                <p className='title'>Terminar Faturamento</p>
-                                <p className='description'>Pro ano passado</p>
-                            </div>
-                            <div className='date-container'>
-                                <span className='date'>{timeAgo('2019-01-15', true)}</span>
-                            </div>
-                        </div>
-                    </Card>
-                </div>
-
+                <TaskComponent showOverlayActions={ this.showOverlayActions } tasksList={ this.state.tasks }/>
             </div>
 
 
