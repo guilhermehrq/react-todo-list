@@ -6,9 +6,11 @@ $sizes: 480 600 840 960 1280 1440 1600;
     display: block;
     box-shadow: ui-shadow('2dp');
     background-color: #FFF;
-    max-width: 100%;
+    width: 100%;
     border-radius: 4px;
     font-size: 14px;
+    position: relative;
+    z-index: 2;
 
     .ui-card-content {
         padding: 16px;

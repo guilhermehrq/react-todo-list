@@ -46,8 +46,8 @@ export default class TaskComponent extends Component {
                         </div>
                         <ReactCSSTransitionGroup
                             transitionName='overlay'
-                            transitionEnterTimeout={280}
-                            transitionLeaveTimeout={280}>
+                            transitionEnterTimeout={200}
+                            transitionLeaveTimeout={200}>
                             { this.renderOverlayActions(i) }
                         </ReactCSSTransitionGroup>
                     </div>

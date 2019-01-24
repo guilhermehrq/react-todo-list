@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
 import { FAB } from '../../components/button/button.component';
 import TaskComponent from './task/task.component';
+import ModalComponent from '../../components/modal/modal.component';
 
 import './todo.scss';
 
@@ -17,6 +18,7 @@ export default class Todo extends Component {
             tasks: this.getTasks(),
             categories: this.getCategories()
         }
+
         this.openFilter = this.openFilter.bind(this);
         this.showOverlayActions = this.showOverlayActions.bind(this);
     }
@@ -84,31 +86,34 @@ export default class Todo extends Component {
         }
 
         return (
-            <div className='ui-s600' style={{ marginTop: '32px' }}>
-                <Card>
-                    <div className='ui-card-title title-container'>
-                        <span>Lista de tarefas</span>
-                        <FAB type='mini' icon='filter_list' className='not-raised' onClick={() => this.openFilter()} />
+            <div>
+                <div className='ui-s600' style={{ marginTop: '32px' }}>
+                    <Card>
+                        <div className='ui-card-title title-container'>
+                            <span>Lista de tarefas</span>
+                            <FAB type='mini' icon='filter_list' className='not-raised' onClick={() => this.openFilter()} />
+                        </div>
+                        <AnimateHeight
+                            duration={300}
+                            height={this.state.height}>
+                            <ReactCSSTransitionGroup
+                                transitionName='filter'
+                                transitionEnterTimeout={280}
+                                transitionLeaveTimeout={280}>
+                                { renderFilter() }
+                            </ReactCSSTransitionGroup>
+                        </AnimateHeight>
+                    </Card>
+                    <TaskComponent showOverlayActions={ this.showOverlayActions } tasksList={ this.state.tasks }/>
+
+                    <div className='fab-container'>
+                        <FAB icon='add' backgroundColor='#64FFDA' />
                     </div>
-                    <AnimateHeight
-                        duration={300}
-                        height={this.state.height}>
-                        <ReactCSSTransitionGroup
-                            transitionName='filter'
-                            transitionEnterTimeout={280}
-                            transitionLeaveTimeout={280}>
-                            { renderFilter() }
-                        </ReactCSSTransitionGroup>
-                    </AnimateHeight>
-                </Card>
-                <div className='fab-container'>
-                    <FAB icon='add' backgroundColor='#64FFDA' />
+
                 </div>
 
-                <TaskComponent showOverlayActions={ this.showOverlayActions } tasksList={ this.state.tasks }/>
+                <ModalComponent open={true} size={600}/>
             </div>
-
-
         )
     }
 }

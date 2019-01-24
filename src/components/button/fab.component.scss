@@ -8,7 +8,10 @@
     justify-content: center;
     box-shadow: ui-shadow('6dp');
     transition: all 280ms ease;
+    user-select: none;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
 
     &.not-raised {
         box-shadow: none;
