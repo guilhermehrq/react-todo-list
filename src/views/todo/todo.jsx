@@ -5,6 +5,7 @@ import AnimateHeight from 'react-animate-height';
 import { FAB } from '../../components/button/button.component';
 import TaskComponent from './task/task.component';
 import ModalComponent from '../../components/modal/modal.component';
+import TextFieldComponent from '../../components/text-field/text-field.component';
 
 import './todo.scss';
 
@@ -112,7 +113,14 @@ export default class Todo extends Component {
 
                 </div>
 
-                <ModalComponent open={true} size={600}/>
+                <ModalComponent open={true} size={600}>
+                    <div className='ui-card-title'>
+                        <span>Cadastro de tarefa</span>
+                    </div>
+                    <div className='ui-card-content'>
+                        <TextFieldComponent />
+                    </div>
+                </ModalComponent>
             </div>
         )
     }

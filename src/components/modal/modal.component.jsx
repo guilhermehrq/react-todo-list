@@ -16,12 +16,7 @@ export class ModalComponent extends Component {
             return (
                 <div className='overlay'>
                     <Card size={ this.props.size }>
-                        <div className='ui-card-title'>
-                            <span>Cadastro de tarefa</span>
-                        </div>
-                        <div className='ui-card-content'>
-                            <p>teste</p>
-                        </div>
+                        { this.props.children }
                     </Card>
                 </div>
             )

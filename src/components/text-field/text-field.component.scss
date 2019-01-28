@@ -1,0 +1,40 @@
+@import '../shared.scss';
+@import '../../variables.scss';
+
+.text-field-wrap {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    label {
+        position: absolute;
+        left: 13px;
+        font-size: 14px;
+        user-select: none;
+        background-color: #fff;
+        pointer-events: none;
+        transition: all 150ms ease;
+    }
+
+    .md-input {
+        border: 2px solid rgba(0,0,0,.32);
+        border-radius: 4px;
+        padding: 7px 11px;
+        height: 34px;
+        width: 100%;
+
+        &:focus, &.elevate {
+            padding: 6px 10px;
+
+            & + label {
+                transform: translateY(-16px);
+                font-size: 12px;
+                left: 6px;
+                padding: 0 6px;
+            }
+        }
+    }
+
+   
+}
