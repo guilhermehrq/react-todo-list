@@ -17,11 +17,16 @@ export default class Todo extends Component {
             height: 0,
             openActionsItem: false,
             tasks: this.getTasks(),
-            categories: this.getCategories()
+            categories: this.getCategories(),
+            cadastroTarefa: {
+                nome: '',
+                descricao: ''
+            }
         }
 
         this.openFilter = this.openFilter.bind(this);
         this.showOverlayActions = this.showOverlayActions.bind(this);
+        this.handleChangeCadastroTarefa = this.handleChangeCadastroTarefa.bind(this);
     }
 
     openFilter() {
@@ -75,6 +80,12 @@ export default class Todo extends Component {
         ]
     }
 
+    handleChangeCadastroTarefa(value, property) {
+        const state = this.state;
+        state.cadastroTarefa[property] = value;
+        this.setState({ ...state });
+    }
+
     render() {
         const renderFilter = () => {
             if (this.state.openFilter) {
@@ -110,7 +121,6 @@ export default class Todo extends Component {
                     <div className='fab-container'>
                         <FAB icon='add' backgroundColor='#64FFDA' />
                     </div>
-
                 </div>
 
                 <ModalComponent open={true} size={600}>
@@ -118,7 +128,18 @@ export default class Todo extends Component {
                         <span>Cadastro de tarefa</span>
                     </div>
                     <div className='ui-card-content'>
-                        <TextFieldComponent />
+                        <div className='text-field-container break-on-s600'>
+                            <TextFieldComponent 
+                                model={ this.state.cadastroTarefa.nome } 
+                                label='Nome' 
+                                name='nome' 
+                                onChange={ this.handleChangeCadastroTarefa }/>
+                            <TextFieldComponent 
+                                model={ this.state.cadastroTarefa.descricao } 
+                                label='Descrição'
+                                name='descricao'
+                                onChange={ this.handleChangeCadastroTarefa }/>
+                        </div>
                     </div>
                 </ModalComponent>
             </div>

@@ -2,10 +2,14 @@
 @import '../../variables.scss';
 
 .text-field-wrap {
+    width: 100%;
+    flex: 1;
     font-size: 14px;
     display: flex;
     align-items: center;
     position: relative;
+    padding: 8px 0;
+    margin-bottom: 16px;
 
     label {
         position: absolute;
@@ -23,6 +27,7 @@
         padding: 7px 11px;
         height: 34px;
         width: 100%;
+        transition: all 150ms ease;
 
         &:focus, &.elevate {
             padding: 6px 10px;
@@ -34,7 +39,13 @@
                 padding: 0 6px;
             }
         }
-    }
 
-   
+        &:focus {
+            border-color: $primary;
+
+            & + label {
+                color: $primary;                
+            }
+        }
+    }
 }

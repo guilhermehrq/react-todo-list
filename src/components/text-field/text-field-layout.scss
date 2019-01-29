@@ -1,0 +1,21 @@
+$sizes: 480 600 840 960 1280 1440 1600;
+
+.text-field-container {
+    display: flex;
+
+    .text-field-wrap:not(:last-child) {
+        margin-right: 16px;
+    }
+
+    @each $size in $sizes {
+        &.break-on-s#{$size} {
+            @media (max-width: #{$size}px) {
+                flex-direction: column;
+
+                .text-field-wrap {
+                    margin-right: initial;
+                }
+            }
+        }
+    }
+}
