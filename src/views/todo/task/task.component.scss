@@ -88,13 +88,13 @@
 
     &.overlay-enter-active {
         opacity: 1;
-        transition: opacity 200ms ease-in-out;
+        transition: opacity 150ms ease-in-out;
     }
 }
 
 .overlay-leave {
     opacity: 1;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
 
     &.overlay-leave-active {
         opacity: 0;

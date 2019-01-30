@@ -14,7 +14,7 @@ export class ModalComponent extends Component {
     showOverlay() {
         if(this.props.open) {
             return (
-                <div className={`overlay ${ this.props.className }`}>
+                <div className={`overlay ${ this.props.open ? 'open' : '' } ${ this.props.className || '' }`}>
                     <Card size={ this.props.size }>
                         { this.props.children }
                     </Card>

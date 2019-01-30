@@ -11,7 +11,6 @@ export default class TextFieldComponent extends Component {
 
     verifyProps() {
         const { select, model, name, onChange, options, textArea, optionLabel, value } = this.props;
-        console.log({ select, model, name, onChange, options, textArea, optionLabel, value });
         if(!select && (model === undefined || !name || !onChange)) {
             throw new Error('Propriedades inválidas para o component TextField! As propriedades aceitas são: model, name, onChange, [label, type]');
         } else if(select && (model === undefined || !name || !onChange || !options || !optionLabel || !value)) {

@@ -14,6 +14,7 @@ export default class Todo extends Component {
         super(props);
         this.state = {
             openFilter: false,
+            openModalTarefa: false,
             height: 0,
             openActionsItem: false,
             tasks: this.getTasks(),
@@ -29,6 +30,7 @@ export default class Todo extends Component {
         this.openFilter = this.openFilter.bind(this);
         this.showOverlayActions = this.showOverlayActions.bind(this);
         this.handleChangeCadastroTarefa = this.handleChangeCadastroTarefa.bind(this);
+        this.handleClickAddButton = this.handleClickAddButton.bind(this);
     }
 
     openFilter() {
@@ -93,6 +95,10 @@ export default class Todo extends Component {
         this.setState({ ...state });
     }
 
+    handleClickAddButton() {
+        this.setState({ ... this.state, openModalTarefa: !this.state.openModalTarefa });
+    }
+
     render() {
         const renderFilter = () => {
             if (this.state.openFilter) {
@@ -126,11 +132,11 @@ export default class Todo extends Component {
                     <TaskComponent showOverlayActions={ this.showOverlayActions } tasksList={ this.state.tasks }/>
 
                     <div className='fab-container'>
-                        <FAB icon='add' backgroundColor='#64FFDA' />
+                        <FAB icon='add' backgroundColor='#64FFDA' onClick={ () => this.handleClickAddButton() } />
                     </div>
                 </div>
 
-                <ModalComponent open={true} size={600} className='teste'>
+                <ModalComponent open={ this.state.openModalTarefa } size={600}>
                     <div className='ui-card-title'>
                         <span>Cadastro de tarefa</span>
                     </div>
@@ -167,7 +173,7 @@ export default class Todo extends Component {
                                     onChange={ this.handleChangeCadastroTarefa }/>
                         </div>
                         <div className='button-container align-rigth'>
-                            <Button label='Cancelar' backgroundColor='#fff' className='not-raised'/>
+                            <Button label='Cancelar' backgroundColor='#fff' className='not-raised' onClick={ () => this.handleClickAddButton() }/>
                             <Button label='Confirmar' backgroundColor='#64FFDA' className='not-raised'/>
                         </div>
                     </div>

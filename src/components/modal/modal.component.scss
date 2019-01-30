@@ -13,6 +13,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .ui-card {
+        transition: all 150ms ease;
+        transform: translateY(250%);
+    }
+
+    &.open {
+        .ui-card {
+            transform: translateY(0);
+        }
+    }
 }
 
 .overlay-enter {

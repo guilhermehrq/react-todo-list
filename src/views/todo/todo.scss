@@ -1,30 +1,40 @@
-.ui-s600 {
-    .title-container {
-        padding-bottom: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .fab-container {
-        width: 56px;
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
-
-        .ui-card-title {
-            /deep/ button {
-                transition: all 280ms ease;
-
-                &:hover {
-                    background-color: rgba(0,0,0,.12);
+#root {
+    .ui-s600 {
+        .title-container {
+            padding-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .fab-container {
+            width: 56px;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+    
+            .ui-card-title {
+                /deep/ button {
+                    transition: all 280ms ease;
+    
+                    &:hover {
+                        background-color: rgba(0,0,0,.12);
+                    }
                 }
             }
-        }
+        }  
     }
 
-    /deep/ .teste {
-        break-after: always;
+    .button-container {
+        display: flex;
+
+        *:not(:first-child) {
+            margin-left: 16px;
+        }
+
+        &.align-rigth {
+            justify-content: flex-end;
+        }
     }
 }
 
