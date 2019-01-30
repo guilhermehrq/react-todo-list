@@ -29,6 +29,10 @@
         width: 100%;
         transition: all 150ms ease;
 
+        &::-webkit-datetime-edit {
+            color: transparent; 
+        }
+
         &:focus, &.elevate {
             padding: 6px 10px;
 
@@ -37,6 +41,10 @@
                 font-size: 12px;
                 left: 6px;
                 padding: 0 6px;
+            }
+
+            &::-webkit-datetime-edit {
+                color: #000; 
             }
         }
 
@@ -49,3 +57,5 @@
         }
     }
 }
+
+

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from '../../components/card/card.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AnimateHeight from 'react-animate-height';
-import { FAB } from '../../components/button/button.component';
+import { FAB, Button } from '../../components/button/button.component';
 import TaskComponent from './task/task.component';
 import ModalComponent from '../../components/modal/modal.component';
 import TextFieldComponent from '../../components/text-field/text-field.component';
@@ -20,7 +20,9 @@ export default class Todo extends Component {
             categories: this.getCategories(),
             cadastroTarefa: {
                 nome: '',
-                descricao: ''
+                descricao: '',
+                categoria: '',
+                data: ''
             }
         }
 
@@ -68,6 +70,10 @@ export default class Todo extends Component {
     getCategories() {
         return [
             {
+                id: null,
+                name: ''
+            },
+            {
                 id: 1,
                 name: 'Pessoal',
                 color: 'red'
@@ -77,6 +83,7 @@ export default class Todo extends Component {
                 name: 'Teste',
                 color: 'black'
             }
+            
         ]
     }
 
@@ -123,7 +130,7 @@ export default class Todo extends Component {
                     </div>
                 </div>
 
-                <ModalComponent open={true} size={600}>
+                <ModalComponent open={true} size={600} className='teste'>
                     <div className='ui-card-title'>
                         <span>Cadastro de tarefa</span>
                     </div>
@@ -134,11 +141,34 @@ export default class Todo extends Component {
                                 label='Nome' 
                                 name='nome' 
                                 onChange={ this.handleChangeCadastroTarefa }/>
+
                             <TextFieldComponent 
-                                model={ this.state.cadastroTarefa.descricao } 
-                                label='Descrição'
-                                name='descricao'
-                                onChange={ this.handleChangeCadastroTarefa }/>
+                                model={ this.state.cadastroTarefa.data } 
+                                label='Data' 
+                                name='data' 
+                                onChange={ this.handleChangeCadastroTarefa }
+                                type='date'/> 
+                        </div>
+                        <div className='text-field-container break-on-s600'>
+                            <TextFieldComponent 
+                                    model={ this.state.cadastroTarefa.descricao } 
+                                    label='Descrição'
+                                    name='descricao'
+                                    onChange={ this.handleChangeCadastroTarefa }/>
+
+                            <TextFieldComponent
+                                    select
+                                    options={ this.state.categories }
+                                    optionLabel='name'
+                                    value='id' 
+                                    model={ this.state.cadastroTarefa.categoria } 
+                                    label='Categoria'
+                                    name='categoria'
+                                    onChange={ this.handleChangeCadastroTarefa }/>
+                        </div>
+                        <div className='button-container align-rigth'>
+                            <Button label='Cancelar' backgroundColor='#fff' className='not-raised'/>
+                            <Button label='Confirmar' backgroundColor='#64FFDA' className='not-raised'/>
                         </div>
                     </div>
                 </ModalComponent>

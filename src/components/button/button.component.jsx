@@ -23,7 +23,7 @@ const Button = props => {
     return (
         <If test={!props.hide}>
             <button
-                className={`md-button${verifyButtonType(props)}`}
+                className={`md-button${verifyButtonType(props)} ${props.className}`}
                 style={{ backgroundColor: props.backgroundColor || '#fff', color: props.color || '#000' }}
                 onClick={props.onClick}>
                 <If test={props.icon}>

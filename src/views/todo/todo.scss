@@ -22,6 +22,10 @@
             }
         }
     }
+
+    /deep/ .teste {
+        break-after: always;
+    }
 }
 
 .filter-enter {
