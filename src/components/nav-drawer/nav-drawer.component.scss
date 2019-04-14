@@ -9,7 +9,7 @@
     background-color: rgba(0,0,0, .32);
     display: block;
     transition: all 280ms ease;
-    z-index: 2;
+    z-index: 3;
 }
 
 .nav-drawer-wrap {
@@ -19,7 +19,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
     transform: translateX(-110%);
     box-shadow: unquote(map-get($shadows, '16dp'));
     transition: all 280ms ease;
